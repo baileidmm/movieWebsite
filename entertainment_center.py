@@ -10,13 +10,10 @@ reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 
-# 从json文件中解析对象
-#  输入:
-#  path 包含movie信息的json文件路径
-#  输出: 包含 Movie 对象的数组 （可能为空）
-#  
 def  getMoviesFormJsonFile(path):
-
+	u""" 从json文件中解析对象.
+	arguments: path -- the json file path
+	return: An array of movie""" 
 	try:
     	 moviesFile = file(path)
     	 try:
@@ -24,7 +21,7 @@ def  getMoviesFormJsonFile(path):
     	 finally:
         	moviesFile.close()
 	except IOError:
-    	 print "Error: 没有找到文件或读取文件失败"
+    	 print "Error: File does not exist "
     	 return []
 	movies = moviesJson["movies"]
 	movieObjects = []
@@ -35,13 +32,12 @@ def  getMoviesFormJsonFile(path):
 
 
 class EntertainmentCenter():
-	"""娱乐中心类"""
+	"""class of EntertainmentCenter"""
 	def __init__(self, path):
 		self.__movies = getMoviesFormJsonFile(path)
 	#打开娱乐中心的网页
 	def open(self):
 		fresh_tomatoes.open_movies_page(self.__movies)
-
 
 entertainmentCenter = EntertainmentCenter("movies.json")
 entertainmentCenter.open()

@@ -2,7 +2,7 @@
 
 
 class Movie():
-	"""docstring for Movie"""
+	"""class of Movie. """
 	def __init__(self, title,storyline,poster_image_url,trailer_url):
 		self.title = title
 		self.storyline = storyline
